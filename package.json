@@ -1,6 +1,6 @@
 {
   "name": "gl-vectors",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A javascript library that imitates glsl vectors",
   "type": "module",
   "main": "dist/cjs/index.js",

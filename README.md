@@ -3,6 +3,9 @@
 A javascript library that imitates glsl vectors
 
 ![CI workflow](https://github.com/prenaissance/gl-vectors/actions/workflows/ci.yml/badge.svg)
+![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=prenaissance_gl-vectors&metric=alert_status)
+![License](https://img.shields.io/github/license/prenaissance/gl-vectors)
+![npm version](https://img.shields.io/npm/v/gl-vectors)
 
 ## How to use
 
