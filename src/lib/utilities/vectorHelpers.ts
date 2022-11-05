@@ -43,6 +43,7 @@ const defineAccessors = (vec: vecN, dimension: number) => {
       set(value: number) {
         this._array[i] = value;
       },
+      enumerable: true,
     });
   }
 };
