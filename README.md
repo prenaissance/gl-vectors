@@ -1,2 +1,3 @@
 # gl-vectors
-A javascript library that immitates glsl vectors
+
+A javascript library that imitates glsl vectors
