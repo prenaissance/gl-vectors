@@ -10,7 +10,8 @@
     "build": "rimraf dist/* && tsc --emitDeclarationOnly --declaration --outFile dist/index.d.ts && tsc -b",
     "build:watch": "npm run build -- --watch",
     "test": "jest",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "vector-props": "bun run tools/printVectorProps.ts"
   },
   "repository": {
     "type": "git",
