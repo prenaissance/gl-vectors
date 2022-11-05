@@ -2,6 +2,8 @@
 
 A javascript library that imitates glsl vectors
 
+![CI workflow](https://github.com/prenaissance/gl-vectors/actions/workflows/ci.yml/badge.svg)
+
 ## How to use
 
 Install the library with `npm install gl-vectors` and import the classes that you need:
