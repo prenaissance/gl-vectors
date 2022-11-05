@@ -1,0 +1,31 @@
+name: Continuos integration
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    name: Build
+    strategy:
+      matrix:
+        node-version: [14, 16, 18]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build
+
+  test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - run: npm ci
+      - run: npm run test

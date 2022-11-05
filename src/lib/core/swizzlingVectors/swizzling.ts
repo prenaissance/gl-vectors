@@ -1,6 +1,6 @@
 import { vectorProps } from "../../utilities/defaults";
 import { permutationsRepetitions } from "../../utilities/vectorHelpers";
-import vecN from "../vecN";
+import vecN from "../vectors/vecN";
 
 const defineSwizzlingN = <ReturnT>(
   vec: vecN,

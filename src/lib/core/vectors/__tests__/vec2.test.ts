@@ -1,4 +1,5 @@
 import vec2 from "../vec2";
+import vec3 from "../vec3";
 
 describe("vectors -> vec2", () => {
   describe("constructor", () => {
@@ -60,6 +61,24 @@ describe("vectors -> vec2", () => {
 
     it.each(additionTable)("should add %p and %p", (a, b, expected) => {
       expect(a.add(b).toArray()).toEqual(expected.toArray());
+    });
+
+    it.each(additionTable)("should substract %p and %p", (a, b) => {
+      expect(a.subtract(b).toArray()).toEqual(
+        a.toArray().map((v, i) => v - b.toArray()[i])
+      );
+    });
+
+    it("should calculate dot products", () => {
+      expect(vec2(1, 2).dot(vec2(3, 4))).toBe(11);
+      expect(vec2(1, 2).dot(vec2(-1, -2))).toBe(-5);
+    });
+
+    it("should calculate cross products", () => {
+      expect(vec2(1, 2).cross(vec2(3, 4))).toEqual(vec3(0, 0, -2));
+      expect(vec2(1, 2).cross(vec2(-1, -2)).toArray()).toEqual(
+        vec3(0, 0, 0).toArray()
+      );
     });
   });
 });

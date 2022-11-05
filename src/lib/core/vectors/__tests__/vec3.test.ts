@@ -28,4 +28,25 @@ describe("vectors -> vec3", () => {
       expect(vec.toArray()).toEqual([1, 2, 0]);
     });
   });
+
+  describe("operations", () => {
+    it("should calculate cross products", () => {
+      const v1 = vec3(1, 2, 3);
+      const v2 = vec3(4, 5, 6);
+      const cross = v1.cross(v2);
+      expect(cross.toArray()).toEqual([-3, 6, -3]);
+
+      const v3 = new vec3(0, 1, 0);
+      const v4 = new vec3(0, 0, 1);
+      const cross2 = v3.cross(v4);
+      expect(cross2.toArray()).toEqual([1, 0, 0]);
+    });
+
+    it("should calculate dot products", () => {
+      const v1 = vec3(1, 2, 3);
+      const v2 = vec3(4, 5, 6);
+      const dot = v1.dot(v2);
+      expect(dot).toBe(32);
+    });
+  });
 });
