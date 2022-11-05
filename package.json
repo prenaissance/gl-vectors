@@ -1,13 +1,30 @@
 {
   "name": "gl-vectors",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A javascript library that imitates glsl vectors",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./swizzling": {
+      "import": "./dist/esm/swizzling.js",
+      "require": "./dist/cjs/swizzling.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "node dist/index.js",
-    "build": "rimraf dist/* && tsc --emitDeclarationOnly --declaration --outFile dist/index.d.ts && tsc -b",
+    "build": "rimraf dist/* && npm run build:cjs && npm run build:esm && npm run build:declarations",
+    "build:declarations": "tsc --emitDeclarationOnly --declaration --outFile dist/index.d.ts",
+    "build:esm": "tsc --module esnext --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "build:watch": "npm run build -- --watch",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
