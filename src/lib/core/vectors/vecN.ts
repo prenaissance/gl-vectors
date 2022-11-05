@@ -1,4 +1,4 @@
-import { defaultVec4Init } from "../utilities/defaults";
+import { defaultVec4Init } from "../../utilities/defaults";
 
 abstract class vecN implements Iterable<number> {
   protected _array: number[] = [];
@@ -23,7 +23,7 @@ abstract class vecN implements Iterable<number> {
   }
 
   toArray(): number[] {
-    return [...this];
+    return [...this._array];
   }
 
   // "Arithmetics"

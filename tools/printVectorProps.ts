@@ -1,4 +1,4 @@
-import { combinationsRepetitions } from "../src/lib/core/swizzling";
+import { permutationsRepetitions } from "../src/lib/utilities/vectorHelpers";
 
 const vectorProps = ["x", "y", "z", "w"];
 
@@ -23,8 +23,8 @@ vectorProps.slice(0, vectorSize).forEach((prop) => {
   result += `  ${cyan(prop)}: ${green("number")};\r\n`;
 });
 
-for (let i = 2; i <= vectorSize; i++) {
-  const swizzles = combinationsRepetitions(vectorProps.slice(0, vectorSize), i);
+for (let i = 2; i <= 4; i++) {
+  const swizzles = permutationsRepetitions(vectorProps.slice(0, vectorSize), i);
   for (const swizzle of swizzles) {
     const swizzleName = swizzle.join("");
     result += `  ${cyan(swizzleName)}: ${green(`vec${i}`)};\r\n`;

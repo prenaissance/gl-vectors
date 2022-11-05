@@ -2,7 +2,7 @@ const isDOMPointInit = (value: unknown) => {
   return (
     typeof value === "object" &&
     value !== null &&
-    !Object.prototype.hasOwnProperty.call(value, Symbol.iterator)
+    !(typeof Reflect.get(value, Symbol.iterator) === "function")
   );
 };
 
