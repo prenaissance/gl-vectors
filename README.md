@@ -6,6 +6,8 @@ A javascript library that imitates glsl vectors
 ![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=prenaissance_gl-vectors&metric=alert_status)
 ![License](https://img.shields.io/github/license/prenaissance/gl-vectors)
 ![npm version](https://img.shields.io/npm/v/gl-vectors)
+![Types](https://badgen.net/npm/types/gl-vectors)
+![Bundle size](https://badgen.net/bundlephobia/min/gl-vectors)
 
 ## How to use
 
@@ -33,10 +35,12 @@ const dot = v1.multiply(2).dot(v2); // 12
 
 ### Swizzling
 
-**_WIP_**
-
 ```js
-import { vec2 } from "gl-vectors/swizzling";
+import { vec3 } from "gl-vectors/swizzling";
+
+const black = vec3(0, 0, 0);
+const transparentRed = vec4(1, black.yz, 0.5);
+console.log(transparentRed.toArray()); // [1, 0, 0, 0.5]
 ```
 
 ## List of methods:

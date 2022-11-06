@@ -10,6 +10,16 @@ if (process.argv.length < 3) {
   process.exit(1);
 }
 
+let isSwizzling = false;
+if (process.argv.length > 3) {
+  if (process.argv[3] === "--swizzling") {
+    isSwizzling = true;
+  } else {
+    console.error("Unknown option, available options are:\n --swizzling");
+    process.exit(1);
+  }
+}
+
 const vectorSize = parseInt(process.argv[2]);
 
 if (vectorSize < 2 || vectorSize > 4) {
@@ -27,7 +37,9 @@ for (let i = 2; i <= 4; i++) {
   const swizzles = permutationsRepetitions(vectorProps.slice(0, vectorSize), i);
   for (const swizzle of swizzles) {
     const swizzleName = swizzle.join("");
-    result += `  ${cyan(swizzleName)}: ${green(`vec${i}`)};\r\n`;
+    result += `  ${cyan(swizzleName)}: ${green(
+      `${isSwizzling ? "swizzlingV" : "v"}ec${i}`
+    )};\r\n`;
   }
 }
 
