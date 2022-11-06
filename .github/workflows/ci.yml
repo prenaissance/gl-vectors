@@ -8,8 +8,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14, 16, 18]
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -55,6 +54,8 @@ jobs:
           args: >
             -Dsonar.organization=prenaissance
             -Dsonar.projectKey=prenaissance_gl-vectors
+            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
+            -Dsonar.language=js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

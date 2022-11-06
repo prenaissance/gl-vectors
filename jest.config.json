@@ -9,6 +9,7 @@
   ],
   "coverageReporters": [
     "lcov",
-    "text"
+    "text",
+    "text-summary"
   ]
 }
