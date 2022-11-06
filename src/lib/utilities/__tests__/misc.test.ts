@@ -1,4 +1,4 @@
-import { flattenIterables } from "../misc";
+import { bindNew, flattenIterables } from "../misc";
 
 describe("utilities -> misc", () => {
   describe("flattenIterables", () => {
@@ -39,6 +39,20 @@ describe("utilities -> misc", () => {
       expect(flattenIterables([1, 2], 3, [4, 5], 6)).toEqual([
         1, 2, 3, 4, 5, 6,
       ]);
+    });
+  });
+
+  describe("bindNew", () => {
+    it("should make a class be instantiable without 'new'", () => {
+      class _Foo {
+        constructor(public x: number, public y: number) {}
+      }
+
+      const Foo = bindNew(_Foo);
+      const fooInstance = Foo(1, 2);
+      expect(fooInstance).toBeInstanceOf(_Foo);
+      expect(fooInstance.x).toBe(1);
+      expect(fooInstance.y).toBe(2);
     });
   });
 });
