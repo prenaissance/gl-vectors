@@ -27,6 +27,7 @@
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "build:watch": "npm run build -- --watch",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "npm run test -- --watch",
     "vector-props": "bun run tools/printVectorProps.ts"
   },

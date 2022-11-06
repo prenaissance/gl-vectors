@@ -50,6 +50,13 @@ describe("vectors -> vec2", () => {
       expect(vec.x).toBe(0);
       expect(vec.y).toBe(0);
     });
+
+    it("should mutate proprieties", () => {
+      const vec = new vec2(1, 2);
+      vec.x = 3;
+      vec.y = 4;
+      expect(vec.toArray()).toEqual([3, 4]);
+    });
   });
 
   describe("operations", () => {
@@ -63,10 +70,14 @@ describe("vectors -> vec2", () => {
       expect(a.add(b).toArray()).toEqual(expected.toArray());
     });
 
-    it.each(additionTable)("should substract %p and %p", (a, b) => {
+    it.each(additionTable)("should subtract %p and %p", (a, b) => {
       expect(a.subtract(b).toArray()).toEqual(
         a.toArray().map((v, i) => v - b.toArray()[i])
       );
+    });
+
+    it("should divide by scalar", () => {
+      expect(vec2(1, 2).divide(2).toArray()).toEqual([0.5, 1]);
     });
 
     it("should calculate dot products", () => {
@@ -79,6 +90,49 @@ describe("vectors -> vec2", () => {
       expect(vec2(1, 2).cross(vec2(-1, -2)).toArray()).toEqual(
         vec3(0, 0, 0).toArray()
       );
+    });
+
+    it("should normalize vector", () => {
+      const normalized = vec2(1, 2).normalize();
+      expect(normalized.length).toBeCloseTo(1);
+    });
+
+    it("should calculate length", () => {
+      expect(vec2(3, 4).length).toBe(5);
+      expect(vec2(-1, -2).length).toBe(Math.sqrt(5));
+    });
+
+    it("should always give dimension of 2", () => {
+      expect(vec2(1, 2).dimension).toBe(2);
+      expect(vec2(1, 2, 3).dimension).toBe(2);
+    });
+
+    it("should calculate distance to other vec2", () => {
+      expect(vec2(1, 2).distanceTo(vec2(3, 4))).toBeCloseTo(2 * Math.sqrt(2));
+    });
+
+    // should be polyfilled or mocked for node
+    it.skip("should apply matrix transformations", () => {
+      const vec = vec2(1, 2);
+      const matrix = new DOMMatrix().translate(1, 2).rotate(90);
+      expect(vec.applyMatrix(matrix).toArray()).toEqual([3, 1]);
+    });
+
+    const lerpTable = [
+      [vec2(1, 2), vec2(3, 4), 0, vec2(1, 2)],
+      [vec2(1, 2), vec2(3, 4), 1, vec2(3, 4)],
+      [vec2(1, 2), vec2(3, 4), 0.5, vec2(2, 3)],
+    ] as const;
+
+    it.each(lerpTable)("should lerp %p and %p by %p", (a, b, t, expected) => {
+      expect(a.lerp(b, t).toArray()).toEqual(expected.toArray());
+    });
+
+    it("should clamp vectors correctly", () => {
+      const vec = vec2(1, 2);
+      const near = vec2(0, 0);
+      const far = vec2(3, 4);
+      expect(vec.clamp(near, far).toArray()).toEqual(near.toArray());
     });
   });
 });

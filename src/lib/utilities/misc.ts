@@ -18,16 +18,10 @@ function bindNew<C extends { new (...args: A): T }, A extends any[], T>(
 function flattenIterables(...args: (number | Iterable<number>)[]): number[] {
   const result: number[] = [];
   for (const arg of args) {
-    if (typeof arg === "undefined") {
-      continue;
-    }
     if (typeof arg === "number") {
       result.push(arg);
     } else {
       const iterable = arg as Iterable<number>;
-      if (iterable[Symbol.iterator] === undefined) {
-        continue;
-      }
       result.push(...iterable);
     }
   }
