@@ -1,5 +1,6 @@
 import vec2 from "../vec2";
 import vec3 from "../vec3";
+import DOMMatrix from "../__mocks__/DOMMatrixMock";
 
 describe("vectors -> vec2", () => {
   describe("constructor", () => {
@@ -111,11 +112,12 @@ describe("vectors -> vec2", () => {
       expect(vec2(1, 2).distanceTo(vec2(3, 4))).toBeCloseTo(2 * Math.sqrt(2));
     });
 
-    // should be polyfilled or mocked for node
-    it.skip("should apply matrix transformations", () => {
+    it("should apply matrix transformations", () => {
       const vec = vec2(1, 2);
-      const matrix = new DOMMatrix().translate(1, 2).rotate(90);
-      expect(vec.applyMatrix(matrix).toArray()).toEqual([3, 1]);
+      const matrix = new DOMMatrix().translateSelf(1, 2);
+      expect(
+        vec.applyMatrix(matrix as any as DOMMatrixReadOnly).toArray()
+      ).toEqual([2, 4]);
     });
 
     const lerpTable = [
@@ -130,9 +132,11 @@ describe("vectors -> vec2", () => {
 
     it("should clamp vectors correctly", () => {
       const vec = vec2(1, 2);
+      const vecFarther = vec2(3, 3);
       const near = vec2(0, 0);
       const far = vec2(3, 4);
       expect(vec.clamp(near, far).toArray()).toEqual(near.toArray());
+      expect(vecFarther.clamp(near, far).toArray()).toEqual(far.toArray());
     });
   });
 });

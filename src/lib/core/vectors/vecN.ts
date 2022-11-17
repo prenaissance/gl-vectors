@@ -64,9 +64,8 @@ abstract class vecN implements Iterable<number> {
   }
 
   applyMatrix(matrix: DOMMatrixReadOnly) {
-    const pointInit = { ...defaultVec4Init, ...this };
-    const result = matrix.transformPoint(pointInit);
-    const resultArray = Object.values(result);
+    const result = matrix.transformPoint(this as unknown as DOMPoint);
+    const resultArray = [result.x, result.y, result.z, result.w];
     return new (this.constructor as any)(resultArray.slice(0, this.dimension));
   }
 
