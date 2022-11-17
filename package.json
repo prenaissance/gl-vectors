@@ -1,19 +1,31 @@
 {
   "name": "gl-vectors",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A javascript library that imitates glsl vectors",
   "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/@types/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/@types/index.d.ts"
     },
     "./swizzling": {
       "import": "./dist/esm/swizzling.js",
-      "require": "./dist/cjs/swizzling.js"
+      "require": "./dist/cjs/swizzling.js",
+      "types": "./dist/@types/swizzling.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "dist/@types/index.d.ts"
+      ],
+      "swizzling": [
+        "dist/@types/swizzling.d.ts"
+      ]
     }
   },
   "files": [
@@ -22,7 +34,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "rimraf dist/* && npm run build:cjs && npm run build:esm && npm run build:declarations",
-    "build:declarations": "tsc --emitDeclarationOnly --declaration --outFile dist/index.d.ts",
+    "build:declarations": "tsc --emitDeclarationOnly --declaration --outDir dist/@types",
     "build:esm": "tsc --module esnext --outDir dist/esm",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "build:watch": "npm run build -- --watch",
@@ -42,19 +54,20 @@
   },
   "homepage": "https://github.com/prenaissance/gl-vectors#readme",
   "devDependencies": {
-    "@types/jest": "^29.2.2",
+    "@types/jest": "^29.2.3",
     "@types/node": "^18.11.9",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@typescript-eslint/parser": "^5.42.0",
-    "eslint": "^8.26.0",
-    "jest": "^29.2.2",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "eslint": "^8.27.0",
+    "jest": "^29.3.1",
     "rimraf": "^3.0.2",
     "ts-jest": "^29.0.3",
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.3"
   },
   "keywords": [
     "glsl",
     "vector",
+    "vectors",
     "math",
     "geometry",
     "graphics"
